@@ -25,34 +25,40 @@ const DeviceSetup: React.FC<DeviceSetupProps> = () => {
   };
 
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Device Setup</CardTitle>
-        <CardDescription>
-          Set up your device ID to connect to the cloud MQTT broker.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Device ID</Label>
-              <Input
-                id="deviceid"
-                placeholder="Device ID for your ESP32S Device."
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-              />
+    <>
+      <Card className="w-[350px]">
+        <CardHeader>
+          <CardTitle>Device Setup</CardTitle>
+          <CardDescription>
+            Set up your device ID to connect to the cloud MQTT broker.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form>
+            <div className="grid w-full items-center gap-4">
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="name">Device ID</Label>
+                <Input
+                  id="deviceid"
+                  placeholder="Device ID for your ESP32S Device."
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-end">
-        <Button disabled={!id} onClick={handleSubmit}>
-          Connect
-        </Button>
-      </CardFooter>
-    </Card>
+          </form>
+        </CardContent>
+        <CardFooter className="flex justify-end">
+          <Button disabled={!id} onClick={handleSubmit}>
+            Connect
+          </Button>
+        </CardFooter>
+      </Card>
+      <p className="font-light text-gray-500 mt-8 text-center">
+        Built by Anirudh Mishra (21BCT0168), Tiya Maheshwari (@1BCT0165) and
+        Rudrajeet Chaudhuri (21BCT0064)
+      </p>
+    </>
   );
 };
 

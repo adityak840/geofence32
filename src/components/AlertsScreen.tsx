@@ -90,7 +90,7 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
             </li>
           ))
         ) : (
-          <p>No alerts yet.</p>
+          <p className="text-center">No alerts yet.</p>
         )}
       </ul>
     </div>

@@ -17,12 +17,14 @@ function App() {
   const deviceId = useStore((state) => state.deviceId);
   return (
     <>
-      <div className="h-full w-full p-2 px-6 flex flex-col items-center">
-        <h1 className="text-4xl font-extrabold lg:text-5xl mt-8 mb-8">
-          Geofence
-          <span className="font-light">32</span>
-        </h1>
-        {!deviceId ? <DeviceSetup /> : <AlertsScreen />}
+      <div className="h-full w-full p-2 px-6">
+        <div className="w-full max-w-[350px] mx-auto flex flex-col items-center">
+          <h1 className="text-4xl font-extrabold lg:text-5xl mt-8 mb-8">
+            Geofence
+            <span className="font-light">32</span>
+          </h1>
+          {!deviceId ? <DeviceSetup /> : <AlertsScreen />}
+        </div>
       </div>
       <Toaster />
     </>

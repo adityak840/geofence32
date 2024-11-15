@@ -26,7 +26,7 @@ const DeviceSetup: React.FC<DeviceSetupProps> = () => {
 
   return (
     <>
-      <Card className="w-[350px]">
+      <Card className="w-full max-w-[350px]">
         <CardHeader>
           <CardTitle>Device Setup</CardTitle>
           <CardDescription>

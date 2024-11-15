@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <div className="h-full w-full p-2 px-6 flex flex-col items-center">
-        <h1 className="text-4xl font-extrabold lg:text-5xl mt-8 mb-10">
+        <h1 className="text-4xl font-extrabold lg:text-5xl mt-8 mb-8">
           Geofence
           <span className="font-light">32</span>
         </h1>

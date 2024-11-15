@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { subscribeToTopic } from '../mqttClient';
 import { useStore } from '@/store';
-import SettingsModal from './SettingsModal';
+import ShowAllCard from './ShowAllCard';
+import { Button } from './ui/button';
 
 type AlertsScreenProps = {};
 
@@ -10,6 +11,8 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
   const alerts = useStore((state) => state.alerts);
   const addAlert = useStore((state) => state.addAlert);
   const showAll = useStore((state) => state.showAll);
+  const clearAlerts = useStore((state) => state.clearAlerts);
+  const resetDeviceId = useStore((state) => state.resetDeviceId);
 
   useEffect(() => {
     subscribeToTopic(`geofenceproject/${deviceId}/alert`, (message) => {
@@ -21,9 +24,34 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
     });
   }, [deviceId]);
 
+  const reset = () => {
+    resetDeviceId();
+    localStorage.removeItem('deviceId');
+    location.reload();
+  };
+
   return (
     <div className="w-full max-w-[350px]">
-      <SettingsModal />
+      <div>
+        <p className="font-light text-center mb-2">
+          Device ID: <span className="font-semibold">{deviceId}</span>
+        </p>
+        <ShowAllCard />
+        <Button
+          variant={'outline'}
+          className="mt-4 w-full font-bold"
+          onClick={clearAlerts}
+        >
+          Clear Alerts
+        </Button>
+        <Button
+          variant={'outline'}
+          className="mt-4 w-full font-bold"
+          onClick={reset}
+        >
+          Reset Device ID
+        </Button>
+      </div>
       <ul className="mt-8">
         {alerts?.length ? (
           alerts.map((alert, index) => (

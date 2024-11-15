@@ -13,6 +13,7 @@ export type StoreType = {
   alerts: Alert[];
   addAlert: (alert: Alert) => void;
   clearAlerts: () => void;
+  resetDeviceId: () => void;
 };
 
 export const useStore = create<StoreType>((set) => ({
@@ -24,4 +25,5 @@ export const useStore = create<StoreType>((set) => ({
   addAlert: (alert: Alert) =>
     set((state) => ({ alerts: [alert, ...state.alerts] })),
   clearAlerts: () => set({ alerts: [] }),
+  resetDeviceId: () => set({ deviceId: null }),
 }));

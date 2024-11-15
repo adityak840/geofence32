@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import DeviceSetup from './components/DeviceSetup';
+import { useStore } from './store';
 
 function App() {
-  const [deviceId, setDeviceId] = useState<string | null>(null);
+  const setDeviceId = useStore((state) => state.setDeviceId);
+  useEffect(() => {
+    const deviceId = localStorage.getItem('deviceId');
+    if (deviceId) {
+      setDeviceId(deviceId);
+    }
+  }, []);
 
+  const deviceId = useStore((state) => state.deviceId);
   return (
     <>
       <div className="h-full w-full p-2 flex flex-col items-center">
@@ -12,7 +20,7 @@ function App() {
           Geofence
           <span className="font-light">32</span>
         </h1>
-        {!deviceId ? <DeviceSetup setDeviceId={setDeviceId} /> : null}
+        {!deviceId ? <DeviceSetup /> : null}
       </div>
     </>
   );

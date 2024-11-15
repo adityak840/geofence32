@@ -10,16 +10,17 @@ import {
 import { Label } from '@radix-ui/react-label';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
+import { useStore } from '@/store';
 
-type DeviceSetupProps = {
-  setDeviceId: (id: string) => void;
-};
+type DeviceSetupProps = {};
 
-const DeviceSetup: React.FC<DeviceSetupProps> = ({ setDeviceId }) => {
+const DeviceSetup: React.FC<DeviceSetupProps> = () => {
   const [id, setId] = useState('');
+  const setDeviceId = useStore((state) => state.setDeviceId);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    localStorage.setItem('deviceId', id.trim());
     setDeviceId(id.trim());
   };
 

@@ -7,7 +7,7 @@ export default function ShowAllCard() {
   const showAll = useStore((state) => state.showAll);
   const setShowAll = useStore((state) => state.setShowAll);
   return (
-    <Card className="sm:w-[300px] w-full">
+    <Card className="sm:w-[350px] w-full">
       <CardHeader>
         <CardTitle>Show All</CardTitle>
       </CardHeader>

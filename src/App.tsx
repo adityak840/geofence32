@@ -3,6 +3,7 @@ import './App.css';
 import DeviceSetup from './components/DeviceSetup';
 import { useStore } from './store';
 import AlertsScreen from './components/AlertsScreen';
+import { Toaster } from './components/ui/toaster';
 
 function App() {
   const setDeviceId = useStore((state) => state.setDeviceId);
@@ -23,6 +24,7 @@ function App() {
         </h1>
         {!deviceId ? <DeviceSetup /> : <AlertsScreen />}
       </div>
+      <Toaster />
     </>
   );
 }

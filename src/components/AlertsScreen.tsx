@@ -3,6 +3,7 @@ import { subscribeToTopic } from '../mqttClient';
 import { useStore } from '@/store';
 import ShowAllCard from './ShowAllCard';
 import { Button } from './ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 type AlertsScreenProps = {};
 
@@ -13,15 +14,36 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
   const showAll = useStore((state) => state.showAll);
   const clearAlerts = useStore((state) => state.clearAlerts);
   const resetDeviceId = useStore((state) => state.resetDeviceId);
+  const { toast } = useToast();
 
   useEffect(() => {
-    subscribeToTopic(`geofenceproject/${deviceId}/alert`, (message) => {
-      addAlert({ message, type: 'alert' });
-    });
+    const subscribeToTopics = async () => {
+      try {
+        await Promise.all([
+          subscribeToTopic(`geofenceproject/${deviceId}/alert`, (message) => {
+            addAlert({ message, type: 'alert' });
+          }),
+          subscribeToTopic(
+            `geofenceproject/${deviceId}/location`,
+            (message) => {
+              addAlert({ message, type: 'location' });
+            }
+          ),
+        ]);
+        toast({
+          title: 'Subscribed to topics',
+          description: `Successfully subscribed to topics for device ${deviceId}`,
+        });
+      } catch (error) {
+        toast({
+          title: 'Error subscribing to topics',
+          description: `Error subscribing to topics for device ${deviceId}`,
+          variant: 'destructive',
+        });
+      }
+    };
 
-    subscribeToTopic(`geofenceproject/${deviceId}/location`, (message) => {
-      addAlert({ message, type: 'location' });
-    });
+    subscribeToTopics();
   }, [deviceId]);
 
   const reset = () => {

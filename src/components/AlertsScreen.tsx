@@ -36,13 +36,15 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
           description: `Subscribing to topics for device ${deviceId}`,
         });
         await Promise.all([
-          subscribeToTopic(`geofenceproject/${deviceId}/alert`, (message) => {
-            addAlert({ message, type: 'alert' });
+          subscribeToTopic(`geofenceproject/${deviceId}/alert`, (msg) => {
+            const { timestamp, message } = JSON.parse(msg);
+            addAlert({ message, type: 'alert', timestamp });
           }),
           subscribeToTopic(
             `geofenceproject/${deviceId}/location`,
             (message) => {
-              addAlert({ message, type: 'location' });
+              const { timestamp } = JSON.parse(message);
+              addAlert({ message, type: 'location', timestamp });
             }
           ),
           subscribeToTopic(
@@ -55,8 +57,9 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
                 JSON.stringify({ center: data.center, radius: data.radius })
               );
               addAlert({
-                message: `Center: ${data.center}, Radius: ${data.radius} at ${data.timestamp}`,
+                message: `Center: [${data.center[0]}, ${data.center[1]}], Radius: ${data.radius}`,
                 type: 'geofence',
+                timestamp: data.timestamp,
               });
             }
           ),
@@ -117,9 +120,10 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
                       : alert.type == 'geofence'
                       ? 'bg-gray-200'
                       : 'bg-gray-100'
-                  } p-4 rounded-lg my-2`}
+                  } p-4 rounded-lg my-2 w-full grid grid-cols-3`}
                 >
-                  {alert.message}
+                  <p className="font-semibold col-span-2">{alert.message}</p>
+                  <p className="font-light">{alert.timestamp}</p>
                 </div>
               ) : null}
             </li>

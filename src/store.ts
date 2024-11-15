@@ -3,6 +3,7 @@ import { create } from 'zustand';
 type Alert = {
   message: string;
   type: 'alert' | 'location' | 'geofence';
+  timestamp: string;
 };
 
 export type StoreType = {

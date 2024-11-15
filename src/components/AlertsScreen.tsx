@@ -54,7 +54,7 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
 
   return (
     <div className="w-full max-w-[350px]">
-      <div>
+      <div className="sticky top-[115px] bg-white z-10 pb-8 pt-1">
         <p className="font-light text-center mb-2">
           Device ID: <span className="font-semibold">{deviceId}</span>
         </p>
@@ -73,8 +73,11 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
         >
           Reset Device ID
         </Button>
+        <Button variant={'default'} className="mt-4 w-full font-bold">
+          Geofence Parameters
+        </Button>
       </div>
-      <ul className="mt-8">
+      <ul>
         {alerts?.length ? (
           alerts.map((alert, index) => (
             <li key={index}>

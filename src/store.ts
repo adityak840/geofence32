@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 type Alert = {
   message: string;
-  type: 'alert' | 'location';
+  type: 'alert' | 'location' | 'geofence';
 };
 
 export type StoreType = {
@@ -14,6 +14,9 @@ export type StoreType = {
   addAlert: (alert: Alert) => void;
   clearAlerts: () => void;
   resetDeviceId: () => void;
+  center: number[];
+  radius: number;
+  setGeofence: (center: number[], radius: number) => void;
 };
 
 export const useStore = create<StoreType>((set) => ({
@@ -26,4 +29,7 @@ export const useStore = create<StoreType>((set) => ({
     set((state) => ({ alerts: [alert, ...state.alerts] })),
   clearAlerts: () => set({ alerts: [] }),
   resetDeviceId: () => set({ deviceId: null }),
+  center: [0, 0],
+  radius: 0,
+  setGeofence: (center: number[], radius: number) => set({ center, radius }),
 }));

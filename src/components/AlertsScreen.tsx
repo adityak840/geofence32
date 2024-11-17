@@ -5,6 +5,7 @@ import ShowAllCard from './ShowAllCard';
 import { Button } from './ui/button';
 import { useToast } from '@/hooks/use-toast';
 import SettingsModal from './SettingsModal';
+import GeoMap from './Geomap';
 
 type AlertsScreenProps = {};
 
@@ -43,8 +44,12 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
           subscribeToTopic(
             `geofenceproject/${deviceId}/location`,
             (message) => {
-              const { timestamp } = JSON.parse(message);
-              addAlert({ message, type: 'location', timestamp });
+              const { timestamp, latitude, longitude } = JSON.parse(message);
+              addAlert({
+                message: `Lat: ${latitude}, Lng: ${longitude}`,
+                type: 'location',
+                timestamp,
+              });
             }
           ),
           subscribeToTopic(
@@ -108,6 +113,7 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
         </Button>
         <SettingsModal />
       </div>
+      <GeoMap />
       <ul>
         {alerts?.length ? (
           alerts.map((alert, index) => (

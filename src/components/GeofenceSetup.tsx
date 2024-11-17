@@ -12,7 +12,7 @@ type GeofenceProps = {};
 
 const GeofenceSetup: React.FC<GeofenceProps> = () => {
   const [center, setCenter] = useState<[number, number]>([12.971, 79.163]);
-  const [radius, setRadius] = useState<number>(100);
+  const [radius, setRadius] = useState<number>(1000);
   const deviceId = useStore((state) => state.deviceId);
   const { toast } = useToast();
 

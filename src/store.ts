@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 type Alert = {
   message: string;
-  type: 'alert' | 'location' | 'geofence';
+  type: 'alert' | 'location' | 'fall';
   timestamp: string;
 };
 

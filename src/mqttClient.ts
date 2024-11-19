@@ -1,6 +1,14 @@
 import mqtt from 'mqtt';
 
-const client = mqtt.connect('wss://test.mosquitto.org:8081/mqtt');
+const clientId = "mqttx_efcf0fd2";
+const username = "test";
+const password = "test";
+
+const client = mqtt.connect('wss://e11c695c.ala.eu-central-1.emqxsl.com:8084/mqtt',{
+  clientId,
+  username,
+  password,
+});
 
 export const subscribeToTopic = (
   topic: string,

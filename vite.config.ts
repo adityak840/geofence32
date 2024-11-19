@@ -12,12 +12,12 @@ export default defineConfig({
         enabled: false,
       },
       manifest: {
-        name: 'Geofence32',
-        short_name: 'Geofence32',
+        name: 'Wearable Project',
+        short_name: 'Wearable Project',
         theme_color: '#bbbbbb',
         icons: [
           {
-            src: '/icon.png',
+            src: '/vite.svg',
             sizes: '192x192',
             type: 'image/png',
           },

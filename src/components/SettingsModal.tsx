@@ -21,7 +21,7 @@ export default function SettingsModal() {
           <DialogTitle>Parameters</DialogTitle>
         </DialogHeader>
         <DialogDescription>
-          Configure geofence center and radius.
+          Configure your geofence parameters
         </DialogDescription>
         <GeofenceSetup />
       </DialogContent>

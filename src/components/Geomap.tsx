@@ -21,7 +21,7 @@ const GeoMap: React.FC = () => {
 
             // Publish location data to /location topic
             publishToTopic(
-              `geofenceproject/${deviceId}/location`,
+              `location`,
               JSON.stringify(locationData)
             );
 
@@ -34,7 +34,7 @@ const GeoMap: React.FC = () => {
               };
               // Publish alert data to /alert topic
               publishToTopic(
-                `geofenceproject/${deviceId}/alert`,
+                `alert`,
                 JSON.stringify(alertData)
               );
             }

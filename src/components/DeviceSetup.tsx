@@ -15,7 +15,7 @@ import { useStore } from '@/store';
 type DeviceSetupProps = {};
 
 const DeviceSetup: React.FC<DeviceSetupProps> = () => {
-  const [id, setId] = useState('');
+  const [id, setId] = useState('bike');
   const setDeviceId = useStore((state) => state.setDeviceId);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -26,14 +26,14 @@ const DeviceSetup: React.FC<DeviceSetupProps> = () => {
 
   return (
     <>
-      <Card className="w-full max-w-[350px]">
+      <Card className="w-full max-w-[350px] text-center">
         <CardHeader>
           <CardTitle>Device Setup</CardTitle>
           <CardDescription>
-            Set up your device ID to connect to the cloud MQTT broker.
+            Connect to your bike?
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        {/* <CardContent>
           <form>
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
@@ -47,16 +47,24 @@ const DeviceSetup: React.FC<DeviceSetupProps> = () => {
               </div>
             </div>
           </form>
-        </CardContent>
-        <CardFooter className="flex justify-end">
+        </CardContent> */}
+        <CardFooter className="flex justify-center">
           <Button disabled={!id} onClick={handleSubmit}>
             Connect
           </Button>
         </CardFooter>
       </Card>
-      <p className="font-light text-gray-500 mt-8 text-center">
-        Built by Anirudh Mishra (21BCT0168), Tiya Maheshwari (@1BCT0165) and
-        Rudrajeet Chaudhuri (21BCT0064)
+      <p className="text-white text-lg mt-8 text-center">
+        Project made by:
+      </p>
+      <p className="font-light text-gray-500 text-center">
+        Aditya Khandelwal (21BCT0164)
+      </p>
+      <p className="font-light text-gray-500 text-center">
+        Kaushal Vishnukanth Rathi (21BCT0084)
+      </p>
+      <p className="font-light text-gray-500 text-center">
+        Shambhavi Singh (21BCT0086)
       </p>
     </>
   );

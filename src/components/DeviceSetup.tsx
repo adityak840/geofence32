@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import {
   Card,
-  CardContent,
+  // CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from './ui/card';
-import { Label } from '@radix-ui/react-label';
-import { Input } from './ui/input';
+// import { Label } from '@radix-ui/react-label';
+// import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { useStore } from '@/store';
 
 type DeviceSetupProps = {};
 
 const DeviceSetup: React.FC<DeviceSetupProps> = () => {
-  const [id, setId] = useState('bike');
+  const [id, setId] = useState('');
   const setDeviceId = useStore((state) => state.setDeviceId);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,6 +23,8 @@ const DeviceSetup: React.FC<DeviceSetupProps> = () => {
     localStorage.setItem('deviceId', id.trim());
     setDeviceId(id.trim());
   };
+
+  setId('bike');
 
   return (
     <>

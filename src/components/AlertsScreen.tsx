@@ -69,6 +69,7 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
             description: `Error subscribing to topics for device ${deviceId}`,
             variant: "destructive",
           });
+          //test
         }
       }
     };

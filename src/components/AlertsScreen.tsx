@@ -4,7 +4,7 @@ import { useStore } from "@/store";
 import ShowAllCard from "./ShowAllCard";
 import { Button } from "./ui/button";
 import { useToast } from "@/hooks/use-toast";
-import SettingsModal from "./SettingsModal";
+// import SettingsModal from "./SettingsModal";
 import GeoMap from "./Geomap";
 
 type AlertsScreenProps = {};
@@ -17,7 +17,7 @@ const AlertsScreen: React.FC<AlertsScreenProps> = () => {
   const clearAlerts = useStore((state) => state.clearAlerts);
   // const resetDeviceId = useStore((state) => state.resetDeviceId);
   const setGeofence = useStore((state) => state.setGeofence);
-  const radius = useStore((state) => state.radius);
+  // const radius = useStore((state) => state.radius);
   const geofence = useStore((state) => state.center);
   const { toast } = useToast();
 

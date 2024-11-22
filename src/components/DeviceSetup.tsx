@@ -55,7 +55,7 @@ const DeviceSetup: React.FC<DeviceSetupProps> = () => {
         </CardFooter>
       </Card>
       <p className="text-white text-lg mt-8 text-center">
-        Project made by:
+         Project made by:
       </p>
       <p className="font-light text-gray-500 text-center">
         Aditya Khandelwal (21BCT0164)
